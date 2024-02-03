@@ -1,14 +1,14 @@
 import { IObjectId } from "./objectId.interface";
-export interface IUserSchema {
-	first_name: string;
-	last_name: string;
-	gender: string;
-	age: number;
-	password: string;
-	email: string;
-	height: number;
-	weight:number;
 
+export interface IUserSchema {
+  user_id: string;
+  is_active: boolean;
+  is_mining: boolean;
+  mining_time:number;
+  referralCode: string;
+  referredBy: string | null ;
+  referredUsers: string[];
+  level: number;
 }
 
 export interface IUser extends IUserSchema, IObjectId {}

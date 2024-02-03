@@ -1,7 +1,6 @@
 FROM node
 
-
-WORKDIR ./src
+WORKDIR /usr/src/app
 
 COPY package*.json ./
 
@@ -11,4 +10,6 @@ COPY . .
 
 EXPOSE 8989
 
-CMD ["npx", "ts-node-dev","src/index.ts"]
+RUN npm install -g pm2
+
+CMD ["pm2-runtime", "dist/index.js"]

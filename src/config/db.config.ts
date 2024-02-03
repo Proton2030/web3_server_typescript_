@@ -5,11 +5,11 @@ console.log("NODE_ENV", String(NODE_ENV));
 
 const mongoURI: string =
 	String(NODE_ENV) == "PROD"
-		? "mongodb://127.0.0.1:27082/p"
+		? "mongodb://127.0.0.1:27082/web3_db_prod"
 		: String(NODE_ENV) == "DEV"
-		? "mongodb://127.0.0.1:27082/d"
+		? "mongodb://127.0.0.1:27082/web3_db_dev"
 		: String(NODE_ENV) == "LOCAL"
-		? "mongodb://127.0.0.1:27017/node_server"
+		? "mongodb://127.0.0.1:27017/web3_db_local"
 		: "";
 
 console.log("First Connection", mongoURI);

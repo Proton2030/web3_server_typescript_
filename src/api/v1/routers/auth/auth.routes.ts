@@ -1,10 +1,12 @@
 import express from "express";
 import { userRegistration } from "../../controllers/auth/registration/userRegistration.controller";
-import { userLogin } from "../../controllers/auth/login/userLogin";
+import { findUserByUserId } from "../../controllers/auth/registration/userdetails";
 
 const router = express.Router();
 
 router.route("/registration").post(userRegistration);
-router.route("/login").post(userLogin);
+router.route("/getuser-byid/:user_id").get(findUserByUserId);
+
+
 
 module.exports = router;

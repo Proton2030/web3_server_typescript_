@@ -6,14 +6,14 @@ import { GENERAL_SCHEMA_OPTIONS } from "../../constants/model/schemaOption";
 
 const UserSchema: Schema<IUserSchema> = new Schema<IUserSchema>(
 	{
-		first_name: SCHEMA_DEFINITION_PROPERTY.requiredString,
-		last_name: SCHEMA_DEFINITION_PROPERTY.requiredString,
-		age: SCHEMA_DEFINITION_PROPERTY.requiredString,
-		email: SCHEMA_DEFINITION_PROPERTY.requiredString,
-		password: SCHEMA_DEFINITION_PROPERTY.requiredString,
-        height: SCHEMA_DEFINITION_PROPERTY.optionalNullNumber,
-        weight:SCHEMA_DEFINITION_PROPERTY.optionalNullNumber,
-
+		user_id: SCHEMA_DEFINITION_PROPERTY.requiredString,
+		is_active: SCHEMA_DEFINITION_PROPERTY.requiredBoolean,
+	    is_mining: SCHEMA_DEFINITION_PROPERTY.requiredBoolean,
+		mining_time:SCHEMA_DEFINITION_PROPERTY.requiredNumber,
+	    referralCode:SCHEMA_DEFINITION_PROPERTY.requiredString,
+	    referredBy:SCHEMA_DEFINITION_PROPERTY.optionalNullString,
+	    referredUsers:SCHEMA_DEFINITION_PROPERTY.optionalNullObject,
+	    level:SCHEMA_DEFINITION_PROPERTY.requiredNumber
 	},
 	GENERAL_SCHEMA_OPTIONS
 );
