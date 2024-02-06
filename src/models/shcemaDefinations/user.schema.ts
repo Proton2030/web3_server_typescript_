@@ -10,6 +10,7 @@ const UserSchema: Schema<IUserSchema> = new Schema<IUserSchema>(
 		is_active: SCHEMA_DEFINITION_PROPERTY.requiredBoolean,
 	    is_mining: SCHEMA_DEFINITION_PROPERTY.requiredBoolean,
 		mining_time:SCHEMA_DEFINITION_PROPERTY.requiredNumber,
+		mining_balance:SCHEMA_DEFINITION_PROPERTY.optionalNullNumber,
 	    referralCode:SCHEMA_DEFINITION_PROPERTY.requiredString,
 	    referredBy:SCHEMA_DEFINITION_PROPERTY.optionalNullString,
 	    referredUsers:SCHEMA_DEFINITION_PROPERTY.optionalNullObject,

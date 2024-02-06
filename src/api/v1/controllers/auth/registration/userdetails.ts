@@ -2,10 +2,6 @@ import { Model, Document } from "mongoose";
 import { Request, Response } from "express";
 import UserModel from "../../../../../models/user.model";
 
-// Assuming you have a model defined somewhere, you can use it like this:
-// const UserModel: Model<IUserSchema & Document> = mongoose.model("User", UserSchema);
-
-// Example function to find a user by user_id from req.body with status codes
 export const findUserByUserId = async(req: Request, res: Response) => {
   const { user_id } = req.params;
   try {

@@ -31,10 +31,8 @@ const options: cors.CorsOptions = {
 app.use(cors(options));
 app.use(json());
 
-// Middleware to parse JSON in the request body
 app.use(express.json());
 
-// API route to add a user
 app.post("/api/user", async (req: Request, res: Response) => {
   const { user_id, referralCode, referredBy } = req.body;
 
@@ -61,7 +59,6 @@ app.post("/api/user", async (req: Request, res: Response) => {
   }
 });
 
-// API route to get user information by referral code
 app.get("/api/user/:referralCode", async (req: Request, res: Response) => {
   const { referralCode } = req.params;
 
@@ -79,7 +76,6 @@ app.get("/api/user/:referralCode", async (req: Request, res: Response) => {
   }
 });
 
-// API route to get level users
 app.get("/api/levelUsers/:referralCode/:numLevels", async (req: Request, res: Response) => {
   const { referralCode, numLevels } = req.params;
 
@@ -93,21 +89,7 @@ app.get("/api/levelUsers/:referralCode/:numLevels", async (req: Request, res: Re
   }
 });
 
-app.put('/update-mining-status/:userId', async (req, res) => {
-  try {
-    const userId = req.params.userId;
 
-    // Call the function to update the user's mining status
-    await updateUserMiningStatus(userId);
-
-    // Respond with a success message
-    res.status(200).json({ message: `User with user_id ${userId} updated successfully` });
-  } catch (error) {
-    // Handle any errors that might occur during the process
-    console.error('Error updating user:', error);
-    res.status(500).json({ error: 'Internal Server Error' });
-  }
-});
 app.get("/", (req, res) => {
 
   res.send(
