@@ -8,6 +8,8 @@ import { Server, Socket } from "socket.io";
 import connectDb from "./config/db.config";
 import { userGraph } from "./services/reff/useGraph";
 import { updateUserMiningStatus } from "./api/v1/controllers/mining";
+import cron from "node-cron"
+import { setMiningBalance } from "./services/setMiningBalance/setMininigBalance.service";
 
 
 const mongo_url = (process.env.NODE_ENV !== "PROD") ? process.env.LOCAL_MONGO_URL : process.env.PROD_MONGO_URL
@@ -100,7 +102,9 @@ app.get("/", (req, res) => {
 app.use("/api/v1", require("./api/v1/routers/routes.index"));
 
 
-connectDb()
+connectDb();
+
+cron.schedule('*/15 * * * *', setMiningBalance);
 
 app.listen(port, () => {
   console.log(`Server is running at http://localhost:${port}`);

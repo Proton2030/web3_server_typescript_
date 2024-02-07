@@ -25,6 +25,7 @@ class UserGraph {
         referredBy,
         referredUsers: [],
         level,
+        mining_balance:300,
         mining_time: 0
       };
 

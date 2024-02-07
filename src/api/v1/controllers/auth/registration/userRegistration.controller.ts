@@ -11,7 +11,7 @@ class UserGraph {
 
   async loadUsersFromDatabase() {
     const usersFromDB = await UserModel.find();
-    usersFromDB.forEach((user) => {
+    usersFromDB.forEach((user: { referralCode: string | number; toObject: () => IUserSchema; }) => {
       this.users[user.referralCode] = user.toObject();
     });
   }
@@ -34,6 +34,7 @@ class UserGraph {
       is_mining: false,
       referralCode,
       referredBy,
+      mining_balance:300,
       referredUsers: [],
       level,
       mining_time: 0
