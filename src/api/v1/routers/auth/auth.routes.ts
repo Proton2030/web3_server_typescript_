@@ -8,7 +8,7 @@ const router = express.Router();
 
 router.route("/registration").post(userRegistration);
 router.route("/getuser-byid/:user_id").get(findUserByUserId);
-router.route("/startMining/:user_id").put(updateUserMiningStatus);
+router.route("/startMining/:user_id").patch(updateUserMiningStatus);
 router.route("/activeuser/:user_id").put(ActiveAccount);
 
 module.exports = router;

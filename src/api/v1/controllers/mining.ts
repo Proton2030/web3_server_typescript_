@@ -15,12 +15,6 @@ export const updateUserMiningStatus= async(req: Request, res: Response)=> {
     user.is_mining = true;
     user.mining_time = new Date().getTime();
 
-    // if (user.is_active) {
-    //   user.mining_balance += 2700;
-    // } else {
-    //   user.mining_balance += 900;
-    // }
-
     await user.save();
     
     res.status(200).json({ status: 200, data: user, message: `${user_id} updated successfully` });
