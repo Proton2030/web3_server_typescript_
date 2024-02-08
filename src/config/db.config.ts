@@ -5,11 +5,11 @@ console.log("NODE_ENV", String(NODE_ENV));
 
 const mongoURI: string =
 	String(NODE_ENV) == "PROD"
-		? "mongodb+srv://drprotonofficial:Adarsha@123@cluster0.9ogg6pi.mongodb.net"
+		? "mongodb+srv://drprotonofficial:Adarsha@123@cluster0.9ogg6pi.mongodb.net/web3"
 		: String(NODE_ENV) == "DEV"
-		? "mongodb+srv://drprotonofficial:Adarsha@123@cluster0.9ogg6pi.mongodb.net"
+		? "mongodb+srv://drprotonofficial:Adarsha@123@cluster0.9ogg6pi.mongodb.net/web3"
 		: String(NODE_ENV) == "LOCAL"
-		? "mongodb+srv://drprotonofficial:Adarsha@123@cluster0.9ogg6pi.mongodb.net"
+		? "mongodb+srv://drprotonofficial:Adarsha@123@cluster0.9ogg6pi.mongodb.net/web3"
 		: "";
 
 console.log("First Connection", mongoURI);
