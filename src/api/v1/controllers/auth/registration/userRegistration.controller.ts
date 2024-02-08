@@ -17,14 +17,6 @@ class UserGraph {
   }
 
   async addUser(user_id: string, referralCode: string, referredBy: string | null) {
-    // Check if the user is already registered in the graph
-  
-
-    // Check if the user is already registered in the database
-    // const userInstance = await UserModel.findOne({ referralCode });
-    // if (userInstance) {
-    //   throw new Error('User with this referral code is already registered.');
-    // }
 
     const level = referredBy && this.users[referredBy] ? this.users[referredBy].level + 1 : 0;
 
@@ -34,7 +26,7 @@ class UserGraph {
       is_mining: false,
       referralCode,
       referredBy,
-      mining_balance:300,
+      mining_balance:0,
       referredUsers: [],
       level,
       mining_time: 0
