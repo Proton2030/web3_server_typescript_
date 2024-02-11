@@ -19,7 +19,7 @@ export const setMiningBalance = async () => {
                             } 
                             ,
                         $inc:{
-                            mining_balance:2700
+                            mining_balance:0.01
                         }
                         }, 
                     },

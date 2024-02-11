@@ -10,6 +10,7 @@ import { userGraph } from "./services/reff/useGraph";
 import { updateUserMiningStatus } from "./api/v1/controllers/mining";
 import cron from "node-cron"
 import { setMiningBalance } from "./services/setMiningBalance/setMininigBalance.service";
+import axios from "axios";
 
 
 const mongo_url = (process.env.NODE_ENV !== "PROD") ? process.env.LOCAL_MONGO_URL : process.env.PROD_MONGO_URL
@@ -88,6 +89,22 @@ app.get("/api/levelUsers/:referralCode/:numLevels", async (req: Request, res: Re
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Internal Server Error", error });
+  }
+});
+
+app.get('/api/coinmarketcap', async (req, res) => {
+  try {
+    const response = await axios.get('https://api.coinmarketcap.com/dexer/v3/dexer/pair-info', {
+      params: {
+        'dexer-platform-name': 'polygon',
+        'address': '0xf58c22ff037978f98ef9c808f84c814866bde208',
+        't': 170765149069
+      }
+    });
+    res.json(response.data);
+  } catch (error) {
+    console.error('Error fetching data:', error);
+    res.status(500).json({ error: 'Internal server error' });
   }
 });
 
