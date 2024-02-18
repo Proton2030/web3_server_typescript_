@@ -1,12 +1,12 @@
 import { Model, Document } from "mongoose";
 import { Request, Response } from "express";
 import UserModel from "../../../models/user.model";
+import PaymentRequestModel from "../../../models/paymentRequest.model";
 
 
 export const ActiveAccount= async(req: Request, res: Response)=> {
-  const {user_id}  = req.params;
+  const {user_id,hash_id}  = req.params;
   try {
-    // Find the user by user_id
     const user = await UserModel.findOne({ user_id: user_id });
 
     if (!user) {
@@ -16,9 +16,17 @@ export const ActiveAccount= async(req: Request, res: Response)=> {
     }
 
     user.is_active = true;
-
     await user.save();
-    res.status(200).json({ status: 200, data: user, message: `${user_id} updated successfully` });
+
+    const newPaymentRequest = new PaymentRequestModel({
+      user_id,
+      hash_id,
+      is_payed: true 
+  });
+
+  const paymentRequest = await newPaymentRequest.save();
+
+    res.status(200).json({ status: 200, data: paymentRequest, message: `${user_id} updated successfully` });
 
   } catch (error) {
     res.status(404).json({ status: 404, message: error });
