@@ -1,3 +1,4 @@
+
 FROM node
 
 WORKDIR /usr/src/app
@@ -9,6 +10,8 @@ RUN npm install
 COPY . .
 
 EXPOSE 8989
+
+RUN npm start
 
 RUN npm install -g pm2
 

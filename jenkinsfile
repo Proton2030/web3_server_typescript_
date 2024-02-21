@@ -1,0 +1,48 @@
+pipeline {
+    agent any
+    environment {
+        // Define environment variables
+        GITHUB_REPO = 'https://github.com/Proton2030/mm-web-server.git/'
+        DOCKER_IMAGE_NAME = 'your_docker_image_name'
+        DOCKERHUB_USERNAME = 'tuhin08'
+        DOCKERHUB_PASSWORD = 'S#@gFFB_cW.Bw35'
+    }
+    stages {
+        stage('Clone from GitHub') {
+            steps {
+                echo "Clone the repository from GitHub"
+                git url: GITHUB_REPO , branch: "main"
+              
+            }
+        }
+
+        stage('Build Docker Image') {
+            steps {
+
+                
+                echo "Build the Docker image"
+                sh "docker build -t web3_backend ." 
+               
+            }
+        }
+
+        stage('Push to Docker Hub') {
+            steps {
+                // Log in to Docker Hub
+                echo "Log in to Docker Hub"
+                sh "docker tag web3_backend tuhin08/web3_backend:latest"
+                sh "docker login -u tuhin08 -p S#@gFFB_cW.Bw35"
+                sh "docker push tuhin08/web3_backend:latest"
+            }
+        }
+
+        stage('Run Docker Image') {
+            steps {
+                // Run the Docker image
+                echo "Run the Docker image"
+                sh "docker-compose down && docker-compose up -d"
+
+            }
+        }
+    }
+}
